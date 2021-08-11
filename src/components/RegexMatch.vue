@@ -17,12 +17,13 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, ref } from 'vue'
+import { inject } from 'vue'
 import { NInput, NButton, NInputGroup, NInputGroupLabel, NPopover } from 'naive-ui'
+import { useStorage } from '@vueuse/core'
 
 
 const regexPairs = inject<string[][]>('regexPairs', [])
-const dataSize = ref(0)
+const dataSize = useStorage('regexPairsSize', 0)
 
 const addRegex = () => {
   dataSize.value += 1
