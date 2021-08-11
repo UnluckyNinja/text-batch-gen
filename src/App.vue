@@ -33,9 +33,11 @@ import OptionsList from './components/OptionsList.vue'
 const rawData = useStorage('rawData','')
 const regexPairs = useStorage('regexPairs',[] as string[][]).value
 const template = useStorage('template','')
+const regexPairsSize = useStorage('regexPairsSize', 0)
 provide('rawData', rawData)
 provide('regexPairs', regexPairs)
 provide('template', template)
+provide('regexPairsSize', regexPairsSize)
 
 const output = useStorage('output', '')
 
@@ -73,7 +75,7 @@ const generateOutput = () => {
     }
     eles.forEach((val, i) => {
       let finalVal = val
-      if (regexPairs[i] && regexPairs[i][0] && regexPairs[i][1]) {
+      if (i < regexPairsSize.value && regexPairs[i] && regexPairs[i][0] && regexPairs[i][1]) {
         finalVal = val.replaceAll(new RegExp(regexPairs[i][0], 'g'), regexPairs[i][1])
       }
       temp = temp.replaceAll(new RegExp('(?<!\\\\)((?:\\\\{2})*)\\$\\{' + (i + 1) + '\\}', 'g'), '$1' + finalVal.replaceAll('$', '$$')) // (?<!\\)(?:\\{2})*\$\{\d+\}

@@ -5,25 +5,25 @@
       <n-input v-model:value="regexPairs[i - 1][0]" placeholder="匹配正则" />
       <n-input v-model:value="regexPairs[i - 1][1]" placeholder="替换正则" />
     </n-input-group>
-    <div class="m-4 text-center">
+    <div class="m-4 flex justify-evenly">
       <n-popover trigger="hover" :delay="500">
         <template #trigger>
           <n-button @click="addRegex" type="info" ghost>添加预处理替换正则</n-button>
         </template>
         <span>每个正则对应每行第n项元素</span>
       </n-popover>
+      <n-button @click="dataSize -= 1" type="warning" ghost>移除最后一个正则</n-button>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { inject } from 'vue'
+import { inject, ref, Ref } from 'vue'
 import { NInput, NButton, NInputGroup, NInputGroupLabel, NPopover } from 'naive-ui'
-import { useStorage } from '@vueuse/core'
 
 
 const regexPairs = inject<string[][]>('regexPairs', [])
-const dataSize = useStorage('regexPairsSize', 0)
+const dataSize = inject<Ref<number>>('regexPairsSize', ref(0))
 
 const addRegex = () => {
   dataSize.value += 1

@@ -44,7 +44,7 @@ let options = inject<Ref<any>>('options') as any
 </script>
 
 <style lang="postcss" scoped>
-.option-input {
+.comp-root .option-input {
   @apply w-auto;
 }
 </style>
