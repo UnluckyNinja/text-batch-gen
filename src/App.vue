@@ -43,7 +43,8 @@ const output = useStorage('output', '')
 
 const options = useStorage('options', {
   input: {
-    skipEmpty: true
+    skipEmpty: true,
+    trim: true
   },
   template: {
     trim: true
@@ -68,7 +69,10 @@ const generateOutput = () => {
       return
     }
 
-    let eles = line.split(/\s+/)
+    if (options.input.trim) {
+      line = line.trim()
+    }
+    let eles = line.split(/(?<!^)\s+/)
     let temp = template.value
     if (options.template.trim) {
       temp = temp.trim()

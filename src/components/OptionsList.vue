@@ -3,9 +3,15 @@
     <div class="text-3xl">选项：</div>
     <div class="flex m-2 items-center">
       <div class="text-xl self-start">输入：</div>
-      <div class="p-2">
-        <span>忽略空行：</span>
-        <n-switch v-model:value="options.input.skipEmpty"></n-switch>
+      <div class="flex-auto p-2 space-y-2">
+        <div>
+          <span>忽略空行：</span>
+          <n-switch v-model:value="options.input.skipEmpty"></n-switch>
+        </div>
+        <div>
+          <span>空端裁剪：</span>
+          <n-switch v-model:value="options.input.trim"></n-switch>
+        </div>
       </div>
     </div>
     <div class="flex m-2 items-center">
