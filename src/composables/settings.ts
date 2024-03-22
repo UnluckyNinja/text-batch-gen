@@ -6,7 +6,7 @@ function defaultValue(){
       skipEmpty: true,
       trim: true,
       separator: '\\t',
-      separatorRegex: false,
+      separatorRegex: true,
     },
     template: {
       trim: true
