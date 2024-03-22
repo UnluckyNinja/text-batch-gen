@@ -1,3 +1,20 @@
+<script lang="ts" setup>
+import { NInput, NButton, NInputGroup, NInputGroupLabel, NPopover } from 'naive-ui'
+
+
+const { regexPairs, regexPairsSize: dataSize } = useBatchgen()
+
+const addRegex = () => {
+  dataSize.value += 1
+  var newIndex = dataSize.value - 1
+  console.log(regexPairs[newIndex])
+  if (!regexPairs[newIndex]) {
+    regexPairs[newIndex] = ['', '']
+  }
+}
+
+</script>
+
 <template>
   <div class="comp-root">
     <n-input-group v-for="i in dataSize" :key="i">
@@ -16,25 +33,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { inject, ref, Ref } from 'vue'
-import { NInput, NButton, NInputGroup, NInputGroupLabel, NPopover } from 'naive-ui'
-
-
-const regexPairs = inject<string[][]>('regexPairs', [])
-const dataSize = inject<Ref<number>>('regexPairsSize', ref(0))
-
-const addRegex = () => {
-  dataSize.value += 1
-  var newIndex = dataSize.value - 1
-  console.log(regexPairs[newIndex])
-  if (!regexPairs[newIndex]) {
-    regexPairs[newIndex] = ['', '']
-  }
-}
-
-</script>
 
 <style lang="postcss" scoped>
 </style>

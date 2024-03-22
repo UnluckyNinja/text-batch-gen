@@ -1,17 +1,15 @@
-<template>
-  <div class="comp-root">
-    <n-input v-model:value="rawData" type="textarea" :rows="10" placeholder="原始数据" />
-  </div>
-</template>
-
 <script lang="ts" setup>
-import { inject, ref, Ref } from 'vue'
 import { NInput } from 'naive-ui'
 
-
-let rawData = inject<Ref<string>>('rawData', ref(''))
+const { inputData } = useBatchgen()
 
 </script>
+
+<template>
+  <div class="comp-root">
+    <n-input class="font-mono text-editor" :input-props="{wrap: 'off', spellcheck: false}"  v-model:value="inputData" type="textarea" :rows="10" placeholder="原始数据" />
+  </div>
+</template>
 
 <style lang="postcss" scoped>
 </style>
